@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "420391593153",
+    "project_id": "yojob-3516a",
+    "storage_bucket": "yojob-3516a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420391593153:android:ccd3b76ed43114e558a040",
+        "android_client_info": {
+          "package_name": "com.yojob.yojobflu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420391593153-c9m34356hr6ong8r74qlhcfkp7llmne2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUbFKiFRXYRQ32Aqx96mSgoGdaP4cVgJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420391593153-c9m34356hr6ong8r74qlhcfkp7llmne2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "420391593153-05hl09q16npu22p7rtiuod2hjrhq9qnf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "nure.yo.job"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420391593153:android:7968afbc3f3d91f358a040",
+        "android_client_info": {
+          "package_name": "nure.yo.job"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420391593153-c9m34356hr6ong8r74qlhcfkp7llmne2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUbFKiFRXYRQ32Aqx96mSgoGdaP4cVgJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420391593153-c9m34356hr6ong8r74qlhcfkp7llmne2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "420391593153-05hl09q16npu22p7rtiuod2hjrhq9qnf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "nure.yo.job"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
