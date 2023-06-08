@@ -2,27 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class YoJobTextField extends StatelessWidget {
-  final bool? obscureText;
-  final String hintText;
-  final TextEditingController controller;
-  final String? Function(String?)? validator;
-  final double width;
-  final double height;
-
   const YoJobTextField({
     Key? key,
     required this.hintText,
     required this.controller,
-    this.width = 314.0,
     this.height = 40.0,
     this.obscureText,
     this.validator,
   }) : super(key: key);
 
+  final bool? obscureText;
+  final String hintText;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
+  final double height;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
       height: height,
       child: TextFormField(
         validator: validator,
@@ -31,7 +28,7 @@ class YoJobTextField extends StatelessWidget {
         style: GoogleFonts.montserrat(
             fontWeight: FontWeight.normal, fontSize: 24.0),
         decoration: InputDecoration(
-          errorStyle: const TextStyle(fontSize: 14.0,height: 0.8),
+          errorStyle: const TextStyle(fontSize: 14.0, height: 0.8),
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
           ),

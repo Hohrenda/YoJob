@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:YoJob/utils/spacing_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,9 +9,9 @@ class YoJobButton extends StatelessWidget {
 
   const YoJobButton(
       {Key? key,
-        required this.onPressed,
-        required this.buttonText,
-        required this.fontSize})
+      required this.onPressed,
+      required this.buttonText,
+      required this.fontSize})
       : super(key: key);
 
   @override
@@ -19,18 +19,22 @@ class YoJobButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        height: 53.0,
-        width: 314.0,
         decoration: BoxDecoration(
-          color: const Color.fromRGBO(61, 224, 146, 1),
+          color: Colors.amber,
           borderRadius: BorderRadius.circular(3.0),
         ),
-        child: Center(
-          child: Text(
-            buttonText,
-            style: GoogleFonts.montserrat(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(
+            SpacingDimens.regular,
+          ),
+          child: Center(
+            child: Text(
+              buttonText,
+              style: GoogleFonts.montserrat(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
