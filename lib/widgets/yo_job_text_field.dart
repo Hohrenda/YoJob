@@ -1,3 +1,4 @@
+import 'package:YoJob/utils/theme_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,18 +27,23 @@ class YoJobTextField extends StatelessWidget {
         obscureText: obscureText ?? false,
         controller: controller,
         style: GoogleFonts.montserrat(
-            fontWeight: FontWeight.normal, fontSize: 24.0),
+          fontWeight: FontWeight.normal,
+          fontSize: 20.0,
+        ),
         decoration: InputDecoration(
           errorStyle: const TextStyle(fontSize: 14.0, height: 0.8),
           enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
+            borderSide: BorderSide(
+              color: YoJobColors.primaryColor,
+            ),
           ),
           contentPadding: const EdgeInsets.only(bottom: 8.0),
           hintText: hintText,
           hintStyle: GoogleFonts.montserrat(
-              color: const Color.fromRGBO(150, 150, 150, 1),
-              fontWeight: FontWeight.normal,
-              fontSize: 24.0),
+            color: const Color.fromRGBO(150, 150, 150, 1),
+            fontWeight: FontWeight.normal,
+            fontSize: 20.0,
+          ),
         ),
       ),
     );

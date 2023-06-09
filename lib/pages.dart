@@ -1,5 +1,7 @@
 import 'package:YoJob/paths.dart';
-import 'package:YoJob/views/authorization/root_screen.dart';
+import 'package:YoJob/views/authorization/root.dart';
+import 'package:YoJob/views/me/me.dart';
+import 'package:YoJob/views/me/me_controller.dart';
 import 'package:get/get.dart';
 
 abstract class Pages {
@@ -9,7 +11,13 @@ abstract class Pages {
       page: () => const Root(),
       participatesInRootNavigator: true,
       children: <GetPage<dynamic>>[
-
+        GetPage(
+          name: AuthPaths.me,
+          page: () => const Me(),
+          binding: BindingsBuilder<MeController>.put(
+            () => MeController(),
+          ),
+        )
       ],
     ),
   ];

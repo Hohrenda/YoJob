@@ -1,5 +1,7 @@
 import 'package:YoJob/utils/spacing_utils.dart';
+import 'package:YoJob/utils/theme_utils.dart';
 import 'package:YoJob/views/authorization/root_controller.dart';
+import 'package:YoJob/widgets/gradient_text.dart';
 import 'package:YoJob/widgets/yo_job_button.dart';
 import 'package:YoJob/widgets/yo_job_text_field.dart';
 import 'package:flutter/material.dart';
@@ -28,31 +30,50 @@ class Root extends GetWidget<RootController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-
-                /// TODO LOGO HERE
-                // const Center(
-                //   child: LogoWithText(logoText: 'PetLog', fontSizeLogo: 72.0),
-                // ),
+                SpacingDimens.xxlargeSpacer,
+                GradientText(
+                  'YouJob',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 64.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  gradient: YoJobColors.yoJobThemeGradient,
+                ),
+                SpacingDimens.regularSpacer,
+                Text(
+                  'Recruiting',
+                  style: GoogleFonts.montserrat(
+                    color: YoJobColors.primaryColor,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SpacingDimens.largeSpacer,
                 Padding(
                   padding: const EdgeInsets.only(top: 29.0, bottom: 50.0),
                   child: YoJobTextField(
                     validator: (text) => text!.isEmpty ? 'required' : null,
-                    hintText: 'email',
+                    hintText: 'E-mail',
                     controller: c.emailController,
                     obscureText: null,
                   ),
                 ),
                 YoJobTextField(
                   validator: (text) => text!.isEmpty ? 'required' : null,
-                  hintText: 'password',
+                  hintText: 'Password',
                   controller: c.passwordController,
                   obscureText: true,
                 ),
                 SpacingDimens.xlargeSpacer,
-                YoJobButton(
-                  onPressed: c.signInWithEmailPassword,
-                  buttonText: 'Sign in',
-                  fontSize: 24.0,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    YoJobButton(
+                      onPressed: c.signInWithEmailPassword,
+                      buttonText: 'Sign in',
+                      fontSize: 24.0,
+                    ),
+                  ],
                 ),
                 SpacingDimens.xlargeSpacer,
                 InkWell(
@@ -92,8 +113,7 @@ class Root extends GetWidget<RootController> {
                 ),
                 SpacingDimens.xlargeSpacer,
                 InkWell(
-                  onTap: () =>
-                  {
+                  onTap: () => {
                     /// TODO: Add navigation to register screen
                     // Navigator.push(
                     //   context,

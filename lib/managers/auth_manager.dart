@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:YoJob/clients/auth_client.dart';
 import 'package:YoJob/models/authorization/logged_user_model.dart';
 import 'package:YoJob/models/authorization/user_profile.dart';
+import 'package:YoJob/paths.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -33,7 +34,17 @@ class AuthManager extends GetLifeCycle {
     }
   }
 
+  void _navigateDependingOnLoginState() {
+    if (_currentUser()?.firebaseUser != null &&
+        UnauthPaths.allRoutes.contains(Get.currentRoute)) {
+      Get.offAllNamed(AuthPaths.me);
+    } else if (!UnauthPaths.allRoutes.contains(Get.currentRoute)) {
+      Get.offAllNamed(UnauthPaths.root);
+    }
+  }
+
   Future<void> _firebaseUserListener(User? firebaseUser) async {
+    print('USER UPDATE $firebaseUser');
     _currentUser.value = LoggedUserModel(firebaseUser, _currentUser()?.profile);
 
     if (firebaseUser != null) {
@@ -44,6 +55,8 @@ class AuthManager extends GetLifeCycle {
     } else {
       _currentUserProfile = null;
     }
+
+    _navigateDependingOnLoginState();
   }
 
   void _userProfileListener(UserProfile? profile) async {
