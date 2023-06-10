@@ -1,8 +1,8 @@
 abstract class UnauthPaths {
   static const String root = '/';
-  static const String register = '/register';
+  static const String activation = '/activate';
 
-  static const List<String> allRoutes = <String>[root, register];
+  static const List<String> allRoutes = <String>[root, activation];
 }
 
 abstract class AuthPaths {

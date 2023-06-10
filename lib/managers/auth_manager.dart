@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthManager extends GetLifeCycle {
-  final AuthClient _userRepository = AuthClient();
+  final AuthClient _authClient = AuthClient();
 
   StreamSubscription? _currentUserProfileSubscription;
 
@@ -21,7 +21,7 @@ class AuthManager extends GetLifeCycle {
 
   @override
   void onInit() {
-    _userRepository.currentFirestoreUserStream.listen(_firebaseUserListener);
+    _authClient.currentFirestoreUserStream.listen(_firebaseUserListener);
     super.onInit();
   }
 
@@ -49,7 +49,7 @@ class AuthManager extends GetLifeCycle {
 
     if (firebaseUser != null) {
       _currentUserProfileSubscription?.cancel();
-      _currentUserProfileSubscription = _userRepository
+      _currentUserProfileSubscription = _authClient
           .currentUserProfileStream(firebaseUser.uid)
           .listen(_userProfileListener);
     } else {
@@ -126,10 +126,10 @@ class AuthManager extends GetLifeCycle {
   }
 
   Future<void> addUser(UserProfile user) async {
-    await _userRepository.createUserProfile(user);
+    await _authClient.createUserProfile(user);
   }
 
   Future<bool> isUserProfileExist(String? userId) async {
-    return await _userRepository.isUserExists(userId);
+    return await _authClient.isUserExists(userId);
   }
 }

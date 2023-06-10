@@ -10,6 +10,7 @@ class YoJobTextField extends StatelessWidget {
     this.height = 40.0,
     this.obscureText,
     this.validator,
+    this.icon,
   }) : super(key: key);
 
   final bool? obscureText;
@@ -17,6 +18,7 @@ class YoJobTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final double height;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,9 @@ class YoJobTextField extends StatelessWidget {
           fontSize: 20.0,
         ),
         decoration: InputDecoration(
+          prefixIcon: icon,
+          prefixIconConstraints:
+              const BoxConstraints(maxHeight: 24, maxWidth: 34),
           errorStyle: const TextStyle(fontSize: 14.0, height: 0.8),
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
