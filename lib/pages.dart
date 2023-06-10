@@ -2,6 +2,8 @@ import 'package:YoJob/paths.dart';
 import 'package:YoJob/views/authorization/activation.dart';
 import 'package:YoJob/views/authorization/activation_controller.dart';
 import 'package:YoJob/views/authorization/root.dart';
+import 'package:YoJob/views/me/company_edition.dart';
+import 'package:YoJob/views/me/company_edition_controller.dart';
 import 'package:YoJob/views/me/me.dart';
 import 'package:YoJob/views/me/me_controller.dart';
 import 'package:get/get.dart';
@@ -26,7 +28,14 @@ abstract class Pages {
           binding: BindingsBuilder<MeController>.put(
             () => MeController(),
           ),
-        )
+        ),
+        GetPage(
+          name: AuthPaths.companyEdition,
+          page: () => const CompanyEdition(),
+          binding: BindingsBuilder<CompanyEditionController>.put(
+            () => CompanyEditionController(),
+          ),
+        ),
       ],
     ),
   ];

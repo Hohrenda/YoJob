@@ -8,10 +8,13 @@ class YoJobTextField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.enabled = true,
+    this.shouldHaveMultiLines = false,
     this.height = 40.0,
     this.obscureText,
     this.validator,
     this.icon,
+    this.inputBorder,
+    this.contentPadding,
   }) : super(key: key);
 
   final bool? obscureText;
@@ -21,12 +24,16 @@ class YoJobTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final double height;
   final Widget? icon;
+  final InputBorder? inputBorder;
+  final EdgeInsets? contentPadding;
+  final bool shouldHaveMultiLines;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: height,
       child: TextFormField(
+        keyboardType: shouldHaveMultiLines ? TextInputType.multiline : null,
         enabled: enabled,
         validator: validator,
         obscureText: obscureText ?? false,
@@ -40,12 +47,14 @@ class YoJobTextField extends StatelessWidget {
           prefixIconConstraints:
               const BoxConstraints(maxHeight: 24, maxWidth: 34),
           errorStyle: const TextStyle(fontSize: 14.0, height: 0.8),
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: YoJobColors.primaryColor,
-            ),
-          ),
-          contentPadding: const EdgeInsets.only(bottom: 8.0),
+          enabledBorder: inputBorder ??
+              const UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: YoJobColors.primaryColor,
+                ),
+              ),
+          focusedBorder: inputBorder,
+          contentPadding: contentPadding ?? const EdgeInsets.only(bottom: 8.0),
           hintText: hintText,
           hintStyle: GoogleFonts.montserrat(
             color: const Color.fromRGBO(150, 150, 150, 1),

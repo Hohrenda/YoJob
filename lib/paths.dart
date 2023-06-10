@@ -7,4 +7,5 @@ abstract class UnauthPaths {
 
 abstract class AuthPaths {
   static const String me = '/me';
+  static const String companyEdition = '/companyEdition';
 }

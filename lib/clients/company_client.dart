@@ -2,8 +2,8 @@ import 'package:YoJob/models/me/company_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompanyClient {
-  final _firestore = FirebaseFirestore.instance;
-  final String companyEndpoint = 'Companies/';
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final String companyEndpoint = 'companies/';
 
   Future<bool> doesUserCompanyExist(String userId) async {
     try {
@@ -14,16 +14,28 @@ class CompanyClient {
     }
   }
 
-  Future<CompanyModel> getCompanyInfo(String userId) async {
-    final CompanyModel? companyInfo;
+  Future<CompanyModel?> getCompanyInfo(String userId) async {
+    CompanyModel? companyInfo;
+    final bool doesCompany = await _doesCompanyExist(userId);
 
-    companyInfo = await _firestore
-        .doc("$companyEndpoint$userId")
-        .snapshots()
-        .map<CompanyModel>((snapshot) => CompanyModel.fromDocument(snapshot))
-        .first;
+    if(doesCompany){
+      companyInfo = await _firestore
+          .doc("$companyEndpoint$userId")
+          .snapshots()
+          .map<CompanyModel?>((snapshot) => CompanyModel.fromDocument(snapshot))
+          .first;
+    }
 
     return companyInfo;
+  }
+
+  Future<bool> _doesCompanyExist(String? userId) async {
+    try {
+      final companyDoc = await _firestore.doc("$companyEndpoint$userId").get();
+      return companyDoc.exists;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<void> createUserCompany({

@@ -1,6 +1,7 @@
 import 'package:YoJob/clients/auth_client.dart';
 import 'package:YoJob/clients/company_client.dart';
 import 'package:YoJob/managers/auth_manager.dart';
+import 'package:YoJob/managers/company_manager.dart';
 import 'package:get/get.dart';
 
 abstract class Services {
@@ -16,5 +17,6 @@ abstract class Services {
 
   static Future<void> initManagers() async {
     Get.lazyPut<AuthManager>(() => AuthManager());
+    Get.lazyPut<CompanyManager>(() => CompanyManager());
   }
 }

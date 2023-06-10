@@ -9,32 +9,29 @@ class CompanyManager extends GetLifeCycle {
   final Rxn<CompanyModel> currentCompanyInfo = Rxn();
   final RxBool isLoading = false.obs;
 
-  @override
-  void onInit(){
-    getCompany();
-    super.onInit();
-  }
-
   Future<void> getCompany() async {
     isLoading.value = true;
-    await _companyClient
-        .getCompanyInfo(_authManager.currentUser!.profile!.userId!)
-        .then((companyInfo) => currentCompanyInfo.value = companyInfo);
+    currentCompanyInfo.value = await _companyClient
+        .getCompanyInfo(_authManager.currentUser!.firebaseUser!.uid);
     isLoading.value = false;
   }
 
   Future<void> addCompanyInfo(CompanyModel companyModel) async {
     isLoading.value = true;
-    if (_authManager.currentUser?.profile?.userId != null) {
+    if (_authManager.currentUser?.firebaseUser?.uid != null) {
       await _companyClient
           .createUserCompany(
-            userId: _authManager.currentUser!.profile!.userId!,
-            companyModel: companyModel,
-          )
+        userId: _authManager.currentUser!.firebaseUser!.uid,
+        companyModel: companyModel,
+      )
           .then(
-            (_) => currentCompanyInfo.value = companyModel,
-          );
+        (_) {
+          currentCompanyInfo.value = companyModel;
+          Get.back();
+        },
+      );
     }
+    print('Company Updated!!!!');
     isLoading.value = false;
   }
 }
