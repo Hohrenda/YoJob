@@ -41,7 +41,8 @@ class AuthManager extends GetLifeCycle {
     if (_currentUser()?.firebaseUser != null &&
         UnauthPaths.allRoutes.contains(Get.currentRoute)) {
       Get.offAllNamed(AuthPaths.me);
-    } else if (!UnauthPaths.allRoutes.contains(Get.currentRoute)) {
+    } else if (_currentUser()?.firebaseUser == null &&
+        !UnauthPaths.allRoutes.contains(Get.currentRoute)) {
       Get.offAllNamed(UnauthPaths.root);
     }
   }

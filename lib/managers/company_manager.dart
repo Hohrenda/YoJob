@@ -31,7 +31,6 @@ class CompanyManager extends GetLifeCycle {
         },
       );
     }
-    print('Company Updated!!!!');
     isLoading.value = false;
   }
 }

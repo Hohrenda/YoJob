@@ -1,5 +1,6 @@
 import 'package:YoJob/managers/auth_manager.dart';
 import 'package:YoJob/managers/company_manager.dart';
+import 'package:YoJob/managers/vacancies_manager.dart';
 import 'package:YoJob/models/me/company_model.dart';
 import 'package:YoJob/paths.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class MeController extends GetxController {
         if (companyInfo != null) {
           // At this point the data should be ready for display
           isLoading.value = false;
+          Get.find<VacanciesManager>().getAllVacancies();
         } else {
           Get.toNamed(AuthPaths.companyEdition);
         }

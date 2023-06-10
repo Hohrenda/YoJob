@@ -5,15 +5,6 @@ class CompanyClient {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final String companyEndpoint = 'companies/';
 
-  Future<bool> doesUserCompanyExist(String userId) async {
-    try {
-      final companyInfo = await _firestore.doc("$companyEndpoint$userId").get();
-      return companyInfo.exists;
-    } catch (e) {
-      return false;
-    }
-  }
-
   Future<CompanyModel?> getCompanyInfo(String userId) async {
     CompanyModel? companyInfo;
     final bool doesCompany = await _doesCompanyExist(userId);

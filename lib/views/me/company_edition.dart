@@ -33,6 +33,21 @@ class CompanyEdition extends GetWidget<CompanyEditionController> {
     );
 
     return Scaffold(
+      appBar: c.companyInfo != null
+          ? AppBar(
+              elevation: 0,
+              backgroundColor: Colors.white,
+              leading: IconButton(
+                padding: const EdgeInsets.only(left: 8.0),
+                icon: const Icon(
+                  Icons.arrow_back_rounded,
+                  color: YoJobColors.primaryColor,
+                  size: 32.0,
+                ),
+                onPressed: Get.back,
+              ),
+            )
+          : null,
       body: Obx(
         () => SingleChildScrollView(
           child: Padding(
@@ -45,29 +60,33 @@ class CompanyEdition extends GetWidget<CompanyEditionController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SpacingDimens.xlargeSpacer,
-                  Center(
-                    child: Text(
-                      'Welcome to YoJob!',
-                      style: GoogleFonts.montserrat(
-                        color: YoJobColors.primaryColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
+                  if (c.companyInfo == null) ...<Widget>[
+                    SpacingDimens.xlargeSpacer,
+                    Center(
+                      child: Text(
+                        'Welcome to YoJob!',
+                        style: GoogleFonts.montserrat(
+                          color: YoJobColors.primaryColor,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-                  SpacingDimens.xlargeSpacer,
-                  Center(
-                    child: Text(
-                      '  Tell us about \nyour company',
-                      style: GoogleFonts.montserrat(
-                        color: YoJobColors.primaryColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
+                    SpacingDimens.xlargeSpacer,
+                    Center(
+                      child: Text(
+                        '  Tell us about \nyour company',
+                        style: GoogleFonts.montserrat(
+                          color: YoJobColors.primaryColor,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-                  SpacingDimens.xxlargeSpacer,
+                  ],
+                  c.companyInfo != null
+                      ? SpacingDimens.largeSpacer
+                      : SpacingDimens.xxlargeSpacer,
                   Text(
                     'Name',
                     style: bodyTheme,
