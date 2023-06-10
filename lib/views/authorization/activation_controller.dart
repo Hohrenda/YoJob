@@ -6,12 +6,26 @@ class ActivationController extends GetxController {
   final AuthManager _manager = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final Rx<AutovalidateMode> autoValidateMode = AutovalidateMode.disabled.obs;
+
+  bool get isLoading => _manager.isLoading();
 
   void signUpWithEmailAndPassword() {
-    _manager.registerNewUser(
-      emailController.text,
-      passwordController.text,
-    );
+    autoValidateMode.value = AutovalidateMode.always;
+    if (formKey.currentState!.validate()) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      _manager.registerNewUser(
+        emailController.text,
+        passwordController.text,
+      );
+    }
+  }
+
+  @override
+  void onClose(){
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 }

@@ -5,6 +5,7 @@ import 'package:YoJob/models/authorization/logged_user_model.dart';
 import 'package:YoJob/models/authorization/user_profile.dart';
 import 'package:YoJob/paths.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -18,6 +19,8 @@ class AuthManager extends GetLifeCycle {
   LoggedUserModel? get currentUser => _currentUser();
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  final RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -44,7 +47,6 @@ class AuthManager extends GetLifeCycle {
   }
 
   Future<void> _firebaseUserListener(User? firebaseUser) async {
-    print('USER UPDATE $firebaseUser');
     _currentUser.value = LoggedUserModel(firebaseUser, _currentUser()?.profile);
 
     if (firebaseUser != null) {
@@ -81,19 +83,36 @@ class AuthManager extends GetLifeCycle {
 
   Future<void> signInWithEmailPassword(String email, String password) async {
     try {
-      await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+      isLoading.value = true;
+      await firebaseAuth
+          .signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          )
+          .then((_) => isLoading.value = false);
     } catch (e) {
+      isLoading.value = false;
+      Get.showSnackbar(
+        const GetSnackBar(
+          message:
+              '''We cannot find you account using the data you provided, please make sure that all fields are coorect''',
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 3),
+        ),
+      );
       print(e.toString());
     }
   }
 
   Future<void> registerNewUser(String email, String password) async {
     try {
-      await firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      isLoading.value = true;
+      await firebaseAuth
+          .createUserWithEmailAndPassword(
+            email: email,
+            password: password,
+          )
+          .then((_) => isLoading.value = false);
     } catch (e) {
       print(e.toString());
     }

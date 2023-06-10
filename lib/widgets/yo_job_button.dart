@@ -9,16 +9,18 @@ class YoJobButton extends StatelessWidget {
     required this.onPressed,
     required this.buttonText,
     required this.fontSize,
+    this.isLoading = false,
   }) : super(key: key);
 
   final VoidCallback onPressed;
   final String buttonText;
   final double fontSize;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onPressed,
+      onTap: isLoading ? null : onPressed,
       child: Container(
         decoration: BoxDecoration(
           gradient: YoJobColors.yoJobThemeGradient,
@@ -30,14 +32,16 @@ class YoJobButton extends StatelessWidget {
             horizontal: SpacingDimens.xlarge,
           ),
           child: Center(
-            child: Text(
-              buttonText,
-              style: GoogleFonts.montserrat(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
+            child: !isLoading
+                ? Text(
+                    buttonText,
+                    style: GoogleFonts.montserrat(
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  )
+                : const CircularProgressIndicator(),
           ),
         ),
       ),

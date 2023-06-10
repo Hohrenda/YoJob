@@ -7,6 +7,7 @@ class YoJobTextField extends StatelessWidget {
     Key? key,
     required this.hintText,
     required this.controller,
+    this.enabled = true,
     this.height = 40.0,
     this.obscureText,
     this.validator,
@@ -14,6 +15,7 @@ class YoJobTextField extends StatelessWidget {
   }) : super(key: key);
 
   final bool? obscureText;
+  final bool enabled;
   final String hintText;
   final TextEditingController controller;
   final String? Function(String?)? validator;
@@ -25,6 +27,7 @@ class YoJobTextField extends StatelessWidget {
     return Container(
       height: height,
       child: TextFormField(
+        enabled: enabled,
         validator: validator,
         obscureText: obscureText ?? false,
         controller: controller,
