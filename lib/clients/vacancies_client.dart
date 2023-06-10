@@ -15,7 +15,6 @@ class VacanciesClient {
   }
 
   Future<void> updateVacancy(VacancyModel vacancyModel) async {
-    print(vacancyModel.id);
     await _firestore.doc("$vacancyEndpoint${vacancyModel.id}").set(
           vacancyModel.toJson(),
         );
@@ -34,17 +33,17 @@ class VacanciesClient {
         .where('companyId', isEqualTo: userId)
         .get();
 
-
     vacancies.addAll(
       querySnapshot.docs.map(
         (doc) {
           VacancyModel vacancyModel = VacancyModel.fromDocument(doc);
-          if (vacancyModel.vacancyCity != null) {
-            vacanciesManager.presentCities.add(vacancyModel.vacancyCity!);
+          if (vacancyModel.vacancyCity != null &&
+              !vacanciesManager.presentCities().contains(vacancyModel.vacancyCity)) {
+            vacanciesManager.presentCities().add(vacancyModel.vacancyCity!);
           }
-          if (vacancyModel.vacancyCategory != null) {
-            vacanciesManager.presentCategories
-                .add(vacancyModel.vacancyCategory!);
+          if (vacancyModel.vacancyCategory != null &&
+              !vacanciesManager.presentCategories().contains(vacancyModel.vacancyCategory)) {
+            vacanciesManager.presentCategories().add(vacancyModel.vacancyCategory!);
           }
           return vacancyModel;
         },

@@ -19,8 +19,8 @@ abstract class Services {
   }
 
   static Future<void> initManagers() async {
-    Get.lazyPut<AuthManager>(() => AuthManager());
-    Get.lazyPut<CompanyManager>(() => CompanyManager());
-    Get.lazyPut<VacanciesManager>(() => VacanciesManager());
+    Get.lazyPut<AuthManager>(() => AuthManager(), fenix: true);
+    Get.lazyPut<CompanyManager>(() => CompanyManager(), fenix: true);
+    Get.lazyPut<VacanciesManager>(() => VacanciesManager(), fenix: true);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:YoJob/managers/company_manager.dart';
 import 'package:YoJob/models/me/company_model.dart';
+import 'package:YoJob/views/me/me_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,6 +54,7 @@ class CompanyEditionController extends GetxController {
       )
           .then((_) {
         if (_companyManager.currentCompanyInfo() != null) {
+          Get.find<MeController>().isLoading.value = false;
           Get.back();
         }
       });

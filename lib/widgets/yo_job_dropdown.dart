@@ -95,7 +95,11 @@ class _YoJobDropdownState extends State<YoJobDropdown> {
       onChanged: (String? newValue) {
         setState(
           () {
-            widget.controller.text = newValue!;
+            if(widget.controller.text == newValue!) {
+              widget.controller.text = '';
+            } else {
+              widget.controller.text = newValue;
+            }
           },
         );
       },

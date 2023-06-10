@@ -11,6 +11,7 @@ class VacanciesManager extends GetLifeCycle {
   RxList<String> presentCities = <String>[].obs;
   Rxn<VacancyModel> selectedVacancy = Rxn();
   final RxBool isLoading = false.obs;
+  final RxBool shouldUpdate = false.obs;
 
   Future<void> getAllVacancies() async {
     isLoading.value = true;
@@ -30,11 +31,13 @@ class VacanciesManager extends GetLifeCycle {
           .then(
         (_) {
           vacanciesList.add(vacancyModel);
-          if (vacancyModel.vacancyCity != null) {
-            presentCities.add(vacancyModel.vacancyCity!);
+          if (vacancyModel.vacancyCity != null &&
+              !presentCities().contains(vacancyModel.vacancyCity)) {
+            presentCities().add(vacancyModel.vacancyCity!);
           }
-          if (vacancyModel.vacancyCategory != null) {
-            presentCategories.add(vacancyModel.vacancyCategory!);
+          if (vacancyModel.vacancyCategory != null &&
+              !presentCategories().contains(vacancyModel.vacancyCategory)) {
+            presentCategories().add(vacancyModel.vacancyCategory!);
           }
           Get.back();
         },
