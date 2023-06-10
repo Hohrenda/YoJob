@@ -37,3 +37,8 @@ flutter:
     - lib/assets/google_logo.svg
     - lib/assets/email_icon.svg
     - lib/assets/key_icon.svg
+    - lib/assets/building_icon.svg
+    - lib/assets/employees_icon.svg
+    - lib/assets/link_icon.svg
+    - lib/assets/pencil_icon.svg
+    - lib/assets/company_icon.svg

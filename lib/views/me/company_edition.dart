@@ -82,6 +82,19 @@ class CompanyEdition extends GetWidget<CompanyEditionController> {
                   ),
                   SpacingDimens.smallSpacer,
                   Text(
+                    'Contact email',
+                    style: bodyTheme,
+                  ),
+                  SpacingDimens.smallSpacer,
+                  YoJobTextField(
+                    hintText: 'Enter your company contact email',
+                    controller: c.companyContactEmailController,
+                    inputBorder: borderTheme,
+                    contentPadding: const EdgeInsets.all(8),
+                    validator: InputValidator.emailValidator,
+                  ),
+                  SpacingDimens.smallSpacer,
+                  Text(
                     'Industry',
                     style: bodyTheme,
                   ),
@@ -89,6 +102,9 @@ class CompanyEdition extends GetWidget<CompanyEditionController> {
                   YoJobDropdown(
                     hintText: 'Category...',
                     items: AppConstants.jobCategories,
+                    selectedValue: c.industryNameController.text.isNotEmpty
+                        ? c.industryNameController.text
+                        : null,
                     controller: c.industryNameController,
                     shouldFill: false,
                     validator: InputValidator.presenceValidator,
@@ -115,7 +131,9 @@ class CompanyEdition extends GetWidget<CompanyEditionController> {
                   YoJobDropdown(
                     hintText: 'Select number of Employees',
                     items: AppConstants.numberOfEmployees,
-                    selectedValue: AppConstants.numberOfEmployees.first,
+                    selectedValue: c.employeesCountController.text.isNotEmpty
+                        ? c.employeesCountController.text
+                        : AppConstants.numberOfEmployees.first,
                     controller: c.employeesCountController,
                     borderRadius: 5,
                     validator: InputValidator.presenceValidator,
@@ -146,6 +164,7 @@ class CompanyEdition extends GetWidget<CompanyEditionController> {
                       ),
                     ],
                   ),
+                  SpacingDimens.xxlargeSpacer,
                 ],
               ),
             ),

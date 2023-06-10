@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompanyModel {
   CompanyModel({
+    this.companyContactEmail,
     this.companyName,
     this.industryName,
     this.websiteLink,
@@ -9,6 +10,7 @@ class CompanyModel {
     this.companyDescription,
   });
 
+  final String? companyContactEmail;
   final String? companyName;
   final String? industryName;
   final String? websiteLink;
@@ -17,6 +19,7 @@ class CompanyModel {
 
   Map<String, Object?> toJson() {
     return {
+      'companyContactEmail': companyContactEmail,
       'companyName': companyName,
       'industryName': industryName,
       'websiteLink': websiteLink,
@@ -27,6 +30,7 @@ class CompanyModel {
 
   factory CompanyModel.fromJson(Map<String, dynamic> doc, String userId) {
     CompanyModel user = CompanyModel(
+      companyContactEmail: doc['companyContactEmail'],
       companyName: doc['companyName'],
       industryName: doc['industryName'],
       websiteLink: doc['websiteLink'],
@@ -41,6 +45,7 @@ class CompanyModel {
   }
 
   CompanyModel copyWith({
+    String? companyContactEmail,
     String? companyName,
     String? industryName,
     String? websiteLink,
@@ -48,6 +53,7 @@ class CompanyModel {
     String? companyDescription,
   }) {
     return CompanyModel(
+      companyContactEmail: companyContactEmail ?? this.companyContactEmail,
       companyName: companyName ?? this.companyName,
       industryName: industryName ?? this.industryName,
       websiteLink: websiteLink ?? this.websiteLink,

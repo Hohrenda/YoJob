@@ -8,6 +8,7 @@ class MeController extends GetxController {
   final AuthManager _authManager = Get.find();
   final CompanyManager _companyManager = Get.find();
   final RxBool isLoading = false.obs;
+  final RxInt selectedTab = 1.obs;
 
   CompanyModel? get companyInfo => _companyManager.currentCompanyInfo();
 
