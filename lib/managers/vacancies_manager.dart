@@ -22,6 +22,7 @@ class VacanciesManager extends GetLifeCycle {
 
   Future<void> addVacancy(VacancyModel vacancyModel) async {
     isLoading.value = true;
+    shouldUpdate.value = true;
     if (_authManager.currentUser?.firebaseUser?.uid != null) {
       await _client
           .createVacancy(
@@ -48,6 +49,7 @@ class VacanciesManager extends GetLifeCycle {
 
   Future<void> updateVacancy(VacancyModel vacancyModel) async {
     isLoading.value = true;
+    shouldUpdate.value = true;
     await _client.updateVacancy(vacancyModel).then(
           (value) => getAllVacancies(),
         );
@@ -56,6 +58,7 @@ class VacanciesManager extends GetLifeCycle {
 
   Future<void> deleteVacancy(VacancyModel vacancyModel) async {
     isLoading.value = true;
+    shouldUpdate.value = true;
     await _client.deleteVacancy(vacancyModel);
     vacanciesList().removeWhere(
       (listVacancy) => listVacancy.id == vacancyModel.id,
